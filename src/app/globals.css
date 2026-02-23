@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --background: #ffffff;
+    --foreground: #1a1a1a;
+}
+
+body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+
+    /* Custom Styles for Bearcub Club */
+    .bg-glass {
+        @apply bg-white/80 backdrop-blur-md border border-white/20;
+    }
+
+    .text-gradient {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+    }
+
+    .btn-primary {
+        @apply w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primary-light transition-all transform hover:scale-105 active:scale-95 shadow-lg;
+    }
+
+    .btn-secondary {
+        @apply w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 bg-accent text-white rounded-full font-semibold hover:bg-accent-light transition-all transform hover:scale-105 active:scale-95 shadow-md;
+    }
+
+    .btn-outline {
+        @apply w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 border-2 border-primary text-primary rounded-full font-semibold hover:bg-primary hover:text-white transition-all transform hover:scale-105 active:scale-95;
+    }
+
+    .section-padding {
+        @apply py-20 px-6 md:px-12 lg:px-24;
+    }
+}
