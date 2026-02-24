@@ -23,12 +23,12 @@ export default function AboutPage() {
                             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                                 <img
                                     src="/founder.jpg"
-                                    alt="Zadock Ablekpe Selasi - Founder of Bearcub Club"
+                                    alt="Zadock Ablekpe Selasi - Founder of Capital Bearcub"
                                     className="w-full h-[600px] object-cover object-top"
                                 />
                                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary/80 to-transparent p-8 text-white">
                                     <h4 className="text-2xl font-bold font-outfit">Zadock Ablekpe Selasi</h4>
-                                    <p className="opacity-90">Founder, Bearcub Club</p>
+                                    <p className="opacity-90">Founder, Capital Bearcub</p>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +37,7 @@ export default function AboutPage() {
                             <h2 className="text-4xl font-outfit font-bold text-primary mb-8">Inspired by Potential</h2>
                             <div className="space-y-6 text-lg text-slate-600 font-inter">
                                 <p>
-                                    Bearcub Club was born out of a simple observation: the immense, untapped brilliance in Ghana's youth. Seeing children with incredible potential but lacking the foundational financial literacy, understanding of wealth creation, and money management skills to secure their future, we decided to act.
+                                    Capital Bearcub was born out of a simple observation: the immense, untapped brilliance in Ghana's youth. Seeing children with incredible potential but lacking the foundational financial literacy, understanding of wealth creation, and money management skills to secure their future, we decided to act.
                                 </p>
                                 <p>
                                     What started as a small neighborhood initiative has grown into a community of young investors, mentors, and future entrepreneurs. We believe that by giving youth the right tools—budgeting basics, financial wisdom, and leadership skills—we can ignite a transformation that goes beyond their individual lives and impacts the entire nation.

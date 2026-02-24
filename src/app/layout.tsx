@@ -9,8 +9,8 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
-    title: "Bearcub Club | Empowering Future Leaders through Tech & Literacy",
-    description: "Bearcub Club is a youth-focused NGO dedicated to empowering children and teenagers through tech education, financial literacy, and leadership development in Ghana.",
+    title: "Capital Bearcub | Empowering Future Leaders through Tech & Literacy",
+    description: "Capital Bearcub is a youth-focused NGO dedicated to empowering children and teenagers through tech education, financial literacy, and leadership development in Ghana.",
     keywords: ["NGO", "Ghana", "Youth Empowerment", "Tech Education", "Financial Literacy", "Leadership"],
 };
 

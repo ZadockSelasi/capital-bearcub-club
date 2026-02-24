@@ -89,7 +89,7 @@ export default function Home() {
                                 Empowering the Next Generation of <span className="text-growth">Wealth Builders</span>
                             </h3>
                             <p className="text-lg text-slate-600 mb-8 leading-relaxed font-inter">
-                                At Bearcub Club, we believe that every child has the potential to achieve financial independence and transform their community. Our mission is to teach money management, saving, budgeting, and an entrepreneurship mindset to raise responsible young leaders.
+                                At Capital Bearcub, we believe that every child has the potential to achieve financial independence and transform their community. Our mission is to teach money management, saving, budgeting, and an entrepreneurship mindset to raise responsible young leaders.
                             </p>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
@@ -188,7 +188,7 @@ export default function Home() {
                 <div className="container mx-auto relative z-10 text-center">
                     <h2 className="text-4xl md:text-5xl font-outfit font-bold mb-8">Ready to Make an Impact?</h2>
                     <p className="text-xl text-white/90 max-w-2xl mx-auto mb-12 leading-relaxed">
-                        Whether you want to support our mission, become a mentor, or enroll your child, your journey with Bearcub Club starts here.
+                        Whether you want to support our mission, become a mentor, or enroll your child, your journey with Capital Bearcub starts here.
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                         <button className="btn-primary bg-white text-primary hover:bg-slate-100 flex items-center justify-center gap-2 text-lg px-12">

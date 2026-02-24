@@ -35,9 +35,9 @@ export default function Navbar() {
             <div className="container mx-auto px-6 flex justify-between items-center">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2">
-                    <Image src="/logo.png" alt="Bearcub Club Logo" width={40} height={40} className="w-10 h-10 object-contain" />
+                    <Image src="/logo.png" alt="Capital Bearcub Logo" width={40} height={40} className="w-10 h-10 object-contain" />
                     <span className={`text-2xl font-outfit font-bold ${scrolled ? "text-primary" : "text-white"}`}>
-                        Bearcub<span className="text-accent underline decoration-2 underline-offset-4">Club</span>
+                        Capital<span className="text-accent underline decoration-2 underline-offset-4">Bearcub</span>
                     </span>
                 </Link>
 
@@ -75,9 +75,9 @@ export default function Navbar() {
                 <div className="flex flex-col h-full p-8">
                     <div className="flex justify-between items-center mb-12">
                         <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-                            <Image src="/logo.png" alt="Bearcub Club Logo" width={40} height={40} className="w-10 h-10 object-contain" />
+                            <Image src="/logo.png" alt="Capital Bearcub Logo" width={40} height={40} className="w-10 h-10 object-contain" />
                             <span className="text-2xl font-outfit font-bold text-primary">
-                                Bearcub<span className="text-accent">Club</span>
+                                Capital<span className="text-accent">Bearcub</span>
                             </span>
                         </Link>
                         <button className="text-primary" onClick={() => setIsOpen(false)}>

@@ -11,9 +11,9 @@ export default function Footer() {
                     {/* Brand Column */}
                     <div className="flex flex-col gap-6">
                         <Link href="/" className="flex items-center gap-2">
-                            <Image src="/logo.png" alt="Bearcub Club Logo" width={40} height={40} className="w-10 h-10 object-contain" />
+                            <Image src="/logo.png" alt="Capital Bearcub Logo" width={40} height={40} className="w-10 h-10 object-contain" />
                             <span className="text-2xl font-outfit font-bold text-white">
-                                Bearcub<span className="text-accent">Club</span>
+                                Capital<span className="text-accent">Bearcub</span>
                             </span>
                         </Link>
                         <p className="text-white/70 leading-relaxed font-inter italic">
@@ -62,7 +62,7 @@ export default function Footer() {
                             </li>
                             <li className="flex gap-3">
                                 <Mail className="w-5 h-5 text-accent shrink-0" />
-                                <span>hello@bearcubclub.org</span>
+                                <span>hello@capitalbearcub.org</span>
                             </li>
                         </ul>
                     </div>
@@ -87,7 +87,7 @@ export default function Footer() {
                 </div>
 
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-white/40 text-sm">
-                    <p>© {new Date().getFullYear()} Bearcub Club. All rights reserved.</p>
+                    <p>© {new Date().getFullYear()} Capital Bearcub. All rights reserved.</p>
                     <div className="flex gap-6">
                         <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
                         <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>

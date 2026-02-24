@@ -15,7 +15,7 @@ body {
 
 @layer components {
 
-    /* Custom Styles for Bearcub Club */
+    /* Custom Styles for Capital Bearcub */
     .bg-glass {
         @apply bg-white/80 backdrop-blur-md border border-white/20;
     }

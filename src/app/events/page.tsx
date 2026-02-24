@@ -8,7 +8,7 @@ const events = [
         title: "Eco-Tech Innovation Bootcamp",
         date: "March 15 - 20, 2026",
         time: "9:00 AM - 4:00 PM",
-        location: "Bearcub Hub, Accra",
+        location: "Capital Bearcub Hub, Accra",
         type: "Workshop",
         price: "Free",
         img: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2670&auto=format&fit=crop",

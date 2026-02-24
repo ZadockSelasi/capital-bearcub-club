@@ -8,7 +8,7 @@ const posts = [
         title: "How Technology is Reshaping Education in Ghana",
         excerpt: "Exploring the transformative power of digital literacy in local schools and the rise of young African developers.",
         date: "Feb 10, 2026",
-        author: "Founder, Bearcub Club",
+        author: "Founder, Capital Bearcub",
         category: "Education",
         img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2574&auto=format&fit=crop"
     },

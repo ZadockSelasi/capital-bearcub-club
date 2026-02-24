@@ -42,7 +42,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-primary text-xl mb-1">Email Us</h4>
-                                        <p className="text-slate-500 italic">hello@bearcubclub.org<br />support@bearcubclub.org</p>
+                                        <p className="text-slate-500 italic">hello@capitalbearcub.org<br />support@capitalbearcub.org</p>
                                     </div>
                                 </div>
 

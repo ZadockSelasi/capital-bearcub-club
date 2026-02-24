@@ -10,7 +10,7 @@ export default function GetInvolvedPage() {
                 <div className="container mx-auto px-6">
                     <h1 className="text-5xl md:text-7xl font-outfit font-bold mb-6">Be the Change</h1>
                     <p className="text-xl text-white/70 max-w-3xl mx-auto">
-                        Your support fuels our mission. Whether you have financial expertise, resources, or a passion for teaching money management, there's a place for you at Bearcub Club.
+                        Your support fuels our mission. Whether you have financial expertise, resources, or a passion for teaching money management, there's a place for you at Capital Bearcub.
                     </p>
                 </div>
             </section>
