@@ -53,9 +53,9 @@ export default function Navbar() {
                             {link.name}
                         </Link>
                     ))}
-                    <button className="btn-secondary px-6 py-2 flex items-center gap-2 text-sm shadow-none">
+                    <Link href="/donate" className="btn-secondary px-6 py-2 flex items-center gap-2 text-sm shadow-none">
                         <Heart className="w-4 h-4 fill-white" /> Donate
-                    </button>
+                    </Link>
                 </div>
 
                 {/* Mobile Toggle */}
@@ -99,9 +99,9 @@ export default function Navbar() {
                     </div>
 
                     <div className="mt-auto">
-                        <button className="btn-secondary w-full py-4 text-lg flex items-center justify-center gap-2">
+                        <Link href="/donate" className="btn-secondary w-full py-4 text-lg flex items-center justify-center gap-2" onClick={() => setIsOpen(false)}>
                             <Heart className="w-5 h-5 fill-white" /> Donate Now
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>

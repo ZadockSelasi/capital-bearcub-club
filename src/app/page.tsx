@@ -26,12 +26,12 @@ export default function Home() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <button className="btn-secondary w-full sm:w-auto flex items-center justify-center gap-2">
+                        <Link href="/programs" className="btn-secondary w-full sm:w-auto flex items-center justify-center gap-2">
                             Learn Financial Skills <ArrowRight className="w-5 h-5" />
-                        </button>
-                        <button className="btn-outline border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto">
+                        </Link>
+                        <Link href="/donate" className="btn-outline border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto flex items-center justify-center">
                             Support Financial Literacy
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </section>
@@ -188,12 +188,12 @@ export default function Home() {
                         Whether you want to support our mission, become a mentor, or enroll your child, your journey with Capital Bearcub starts here.
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                        <button className="btn-primary bg-white text-primary hover:bg-slate-100 flex items-center justify-center gap-2 text-lg px-12">
+                        <Link href="/donate" className="btn-primary bg-white text-primary hover:bg-slate-100 flex items-center justify-center gap-2 text-lg px-12">
                             <Heart className="w-6 h-6 fill-primary" /> Donate Today
-                        </button>
-                        <button className="btn-primary bg-primary text-white hover:bg-primary-light text-lg px-12">
+                        </Link>
+                        <Link href="/get-involved" className="btn-primary bg-primary text-white hover:bg-primary-light text-lg px-12 flex items-center justify-center">
                             Become a Volunteer
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </section>
