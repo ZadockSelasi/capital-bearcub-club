@@ -17,7 +17,7 @@ export default function Home() {
 
 
                     <h1 className="text-5xl md:text-7xl font-outfit font-bold mb-6 leading-tight">
-                        Raising <span className="text-growth">Financially Intelligent</span> <br />
+                        Raising <span className="text-white">Financially Intelligent</span> <br />
                         & Purpose-Driven Youth
                     </h1>
 
