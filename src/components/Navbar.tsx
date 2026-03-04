@@ -37,7 +37,7 @@ export default function Navbar() {
                 <Link href="/" className="flex items-center gap-2">
                     <Image src="/logo.png" alt="Capital Bearcub Logo" width={80} height={80} className="w-10 h-10 object-contain" />
                     <span className={`text-2xl font-outfit font-bold ${scrolled ? "text-primary" : "text-white"}`}>
-                        Capital<span className="text-accent underline decoration-2 underline-offset-4">Bearcub</span>
+                        Capital<span className="text-accent">Bearcub</span>
                     </span>
                 </Link>
 
