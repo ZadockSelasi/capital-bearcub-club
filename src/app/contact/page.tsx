@@ -112,15 +112,19 @@ export default function ContactPage() {
                 </div>
             </section>
 
-            {/* Map Placeholder */}
-            <section className="h-[400px] w-full bg-slate-200 relative grayscale hover:grayscale-0 transition-all duration-700">
-                <div className="absolute inset-0 bg-cover bg-center bg-[url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=2666&auto=format&fit=crop')]"></div>
-                <div className="absolute inset-0 bg-primary/10 pointer-events-none"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <div className="bg-white p-6 rounded-3xl shadow-2xl animate-bounce">
-                        <MapPin className="w-10 h-10 text-accent" />
-                    </div>
-                </div>
+            {/* Real-time Map */}
+            <section className="h-[400px] w-full relative bg-slate-200">
+                <iframe
+                    title="Capital Bearcub Location"
+                    src="https://maps.google.com/maps?q=Accra%20Digital%20Centre,%20Ghana&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="absolute inset-0 grayscale hover:grayscale-0 transition-all duration-700"
+                ></iframe>
             </section>
         </main>
     );
