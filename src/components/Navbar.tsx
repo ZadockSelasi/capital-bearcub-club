@@ -35,7 +35,7 @@ export default function Navbar() {
             <div className="container mx-auto px-6 flex justify-between items-center">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2">
-                    <Image src="/logo.png" alt="Capital Bearcub Logo" width={80} height={80} className="w-10 h-10 object-contain" />
+                    <Image src="/logo.png" alt="Capital Bearcub Logo" width={80} height={80} className="w-14 h-14 object-contain" />
                     <span className={`text-2xl font-outfit font-bold ${scrolled ? "text-primary" : "text-white"}`}>
                         Capital<span className="text-accent">Bearcub</span>
                     </span>
@@ -75,7 +75,7 @@ export default function Navbar() {
                 <div className="flex flex-col h-full p-8">
                     <div className="flex justify-between items-center mb-12">
                         <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-                            <Image src="/logo.png" alt="Capital Bearcub Logo" width={40} height={40} className="w-10 h-10 object-contain" />
+                            <Image src="/logo.png" alt="Capital Bearcub Logo" width={80} height={80} className="w-14 h-14 object-contain" />
                             <span className="text-2xl font-outfit font-bold text-primary">
                                 Capital<span className="text-accent">Bearcub</span>
                             </span>
