@@ -10,14 +10,11 @@ export default function Home() {
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-gradient-to-b from-primary/80 to-primary"></div>
                     {/* Placeholder for hero image */}
-                    <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay opacity-30"></div>
+                    <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2670&auto=format&fit=crop')]m bg-cover bg-center mix-blend-overlay opacity-30"></div>
                 </div>
 
                 <div className="container mx-auto px-6 relative z-10 text-center">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 border border-accent/30 text-accent mb-8 animate-fade-in">
-                        <Sparkles className="w-4 h-4" />
-                        <span className="text-sm font-semibold tracking-wider uppercase">Financially Empowering Ghana's Youth</span>
-                    </div>
+
 
                     <h1 className="text-5xl md:text-7xl font-outfit font-bold mb-6 leading-tight">
                         Raising <span className="text-growth">Financially Intelligent</span> <br />

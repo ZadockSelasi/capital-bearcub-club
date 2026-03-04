@@ -22,7 +22,7 @@ export default function AboutPage() {
                         <div className="lg:w-1/2">
                             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                                 <img
-                                    src="/founder.jpg"
+                                    src="/founder.JPEG"
                                     alt="Zadock Ablekpe Selasi - Founder of Capital Bearcub"
                                     className="w-full h-[600px] object-cover object-top"
                                 />
