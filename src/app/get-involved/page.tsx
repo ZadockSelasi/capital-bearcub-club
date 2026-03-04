@@ -1,15 +1,40 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { ArrowRight, Gift, Handshake, Heart, UserPlus } from "lucide-react";
 import Link from "next/link";
 
 export default function GetInvolvedPage() {
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const data = Object.fromEntries(formData);
+
+        setStatus('loading');
+        try {
+            const res = await fetch('/api/volunteer', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+            if (res.ok) setStatus('success');
+            else setStatus('error');
+        } catch (err) {
+            setStatus('error');
+        } finally {
+            setTimeout(() => setStatus('idle'), 5000);
+        }
+    };
+
     return (
         <main className="min-h-screen pt-20">
             {/* Header */}
             <section className="section-padding bg-primary text-white text-center">
                 <div className="container mx-auto px-6">
                     <h1 className="text-5xl md:text-7xl font-outfit font-bold mb-6">Be the Change</h1>
-                    <p className="text-xl text-white/70 max-w-3xl mx-auto">
+                    <p className="text-xl text-white/70 max-w-3xl mx-auto italic">
                         Your support fuels our mission. Whether you have financial expertise, resources, or a passion for teaching money management, there's a place for you at Capital Bearcub.
                     </p>
                 </div>
@@ -81,21 +106,36 @@ export default function GetInvolvedPage() {
 
                         {/* Right Side: Form */}
                         <div className="lg:col-span-3 bg-white p-8 md:p-12 rounded-[2rem] shadow-2xl border border-slate-100">
-                            <form className="space-y-6">
+                            <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="flex flex-col gap-2">
                                         <label className="text-sm font-bold text-slate-700">Full Name</label>
-                                        <input type="text" placeholder="John Doe" className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" />
+                                        <input
+                                            name="name"
+                                            required
+                                            type="text"
+                                            placeholder="John Doe"
+                                            className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors shadow-sm"
+                                        />
                                     </div>
                                     <div className="flex flex-col gap-2">
                                         <label className="text-sm font-bold text-slate-700">Email Address</label>
-                                        <input type="email" placeholder="john@example.com" className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" />
+                                        <input
+                                            name="email"
+                                            required
+                                            type="email"
+                                            placeholder="john@example.com"
+                                            className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors shadow-sm"
+                                        />
                                     </div>
                                 </div>
 
                                 <div className="flex flex-col gap-2">
                                     <label className="text-sm font-bold text-slate-700">I am interested in...</label>
-                                    <select className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors appearance-none">
+                                    <select
+                                        name="interest"
+                                        className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors appearance-none cursor-pointer shadow-sm"
+                                    >
                                         <option>Financial Mentorship</option>
                                         <option>Corporate Partnership</option>
                                         <option>Donating Resources</option>
@@ -105,11 +145,21 @@ export default function GetInvolvedPage() {
 
                                 <div className="flex flex-col gap-2">
                                     <label className="text-sm font-bold text-slate-700">Message / Motivation</label>
-                                    <textarea rows={4} placeholder="Tell us why you want to join..." className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors resize-none"></textarea>
+                                    <textarea
+                                        name="message"
+                                        required
+                                        rows={4}
+                                        placeholder="Tell us why you want to join..."
+                                        className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors resize-none shadow-sm"
+                                    ></textarea>
                                 </div>
 
-                                <button className="btn-secondary w-full py-4 text-lg shadow-xl hover:shadow-accent/20">
-                                    Send Application
+                                <button
+                                    type="submit"
+                                    disabled={status === 'loading'}
+                                    className="btn-secondary w-full py-4 text-lg shadow-xl hover:shadow-accent/20 disabled:opacity-50"
+                                >
+                                    {status === 'loading' ? 'Sending...' : status === 'success' ? 'Application Sent!' : 'Send Application'}
                                 </button>
                             </form>
                         </div>
@@ -120,15 +170,15 @@ export default function GetInvolvedPage() {
             {/* Donation Highlight */}
             <section className="section-padding bg-slate-50">
                 <div className="container mx-auto">
-                    <div className="bg-[url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2626&auto=format&fit=crop')] bg-cover bg-center rounded-[3rem] overflow-hidden relative min-h-[500px] flex items-center">
+                    <div className="bg-[url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2626&auto=format&fit=crop')] bg-cover bg-center rounded-[3rem] overflow-hidden relative min-h-[500px] flex items-center shadow-2xl">
                         <div className="absolute inset-0 bg-primary/80 backdrop-blur-sm"></div>
                         <div className="relative z-10 px-8 md:px-20 text-white max-w-4xl">
                             <h2 className="text-4xl md:text-5xl font-outfit font-bold mb-6 italic">Support a Future Wealth Builder</h2>
-                            <p className="text-xl text-white/80 mb-10 leading-relaxed font-inter">
+                            <p className="text-xl text-white/80 mb-10 leading-relaxed font-inter italic opacity-90">
                                 Your donations directly fund scholarships, resources for our financial literacy programs, and startup seed money for youth-led businesses. Every contribution builds a bridge to an economically empowered Ghana.
                             </p>
-                            <Link href="/donate" className="btn-primary flex items-center gap-2 w-fit text-lg px-12">
-                                <Heart className="w-6 h-6 fill-white" /> Secure Donation
+                            <Link href="/donate" className="btn-primary flex items-center gap-2 w-fit text-lg px-12 group">
+                                <Heart className="w-6 h-6 fill-white group-hover:scale-110 transition-transform" /> Secure Donation
                             </Link>
                         </div>
                     </div>
@@ -137,3 +187,4 @@ export default function GetInvolvedPage() {
         </main>
     );
 }
+

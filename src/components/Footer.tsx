@@ -1,9 +1,17 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 
 export default function Footer() {
+    const pathname = usePathname();
+    const isHidden = pathname.startsWith("/admin") || pathname.startsWith("/auth");
+
+    if (isHidden) return null;
+
     return (
         <footer className="bg-primary text-white pt-20 pb-10">
             <div className="container mx-auto px-6">
@@ -58,11 +66,11 @@ export default function Footer() {
                             </li>
                             <li className="flex gap-3">
                                 <Phone className="w-5 h-5 text-accent shrink-0" />
-                                <span>+233 XX XXX XXXX</span>
+                                <span>+233 53 253 9051</span>
                             </li>
                             <li className="flex gap-3">
                                 <Mail className="w-5 h-5 text-accent shrink-0" />
-                                <span>hello@capitalbearcub.org</span>
+                                <span>zadockselasi7@gmail.com</span>
                             </li>
                         </ul>
                     </div>

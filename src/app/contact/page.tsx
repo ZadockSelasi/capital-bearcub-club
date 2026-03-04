@@ -1,7 +1,11 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Mail, MapPin, Phone, Send, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 export default function ContactPage() {
+    const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
     return (
         <main className="min-h-screen pt-20">
             {/* Header */}
@@ -42,7 +46,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-primary text-xl mb-1">Email Us</h4>
-                                        <p className="text-slate-500 italic">hello@capitalbearcub.org<br />support@capitalbearcub.org</p>
+                                        <p className="text-slate-500 italic">zadockselasi7@gmail.com</p>
                                     </div>
                                 </div>
 
@@ -52,7 +56,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-primary text-xl mb-1">Call Us</h4>
-                                        <p className="text-slate-500 italic">+233 53 253 9051<br />+233 xxx xxx</p>
+                                        <p className="text-slate-500 italic">+233 53 253 9051</p>
                                     </div>
                                 </div>
                             </div>
@@ -64,8 +68,8 @@ export default function ContactPage() {
                                     Follow Our Journey
                                 </h5>
                                 <div className="flex gap-4">
-                                    {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-                                        <a key={i} href="#" className="w-12 h-12 rounded-2xl border border-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all text-slate-400">
+                                    {[Facebook, Twitter, Instagram, Linkedin].map((Icon, idx) => (
+                                        <a key={idx} href="#" className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
                                             <Icon className="w-5 h-5" />
                                         </a>
                                     ))}
@@ -74,37 +78,87 @@ export default function ContactPage() {
                         </div>
 
                         {/* Contact Form */}
-                        <div className="bg-slate-50 p-8 md:p-12 rounded-[2rem] border border-slate-100 shadow-xl">
-                            <h3 className="text-3xl font-outfit font-bold text-primary mb-8">Send a Message</h3>
-                            <form className="space-y-6">
+                        <div className="bg-white p-8 md:p-12 rounded-[40px] shadow-2xl border border-slate-100 relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full -mr-16 -mt-16"></div>
+                            <form
+                                onSubmit={async (e) => {
+                                    e.preventDefault();
+                                    const formData = new FormData(e.currentTarget);
+                                    const data = Object.fromEntries(formData);
+
+                                    setFormStatus('loading');
+                                    try {
+                                        const res = await fetch('/api/contact', {
+                                            method: 'POST',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify(data),
+                                        });
+                                        if (res.ok) setFormStatus('success');
+                                        else setFormStatus('error');
+                                    } catch (err) {
+                                        setFormStatus('error');
+                                    } finally {
+                                        setTimeout(() => setFormStatus('idle'), 5000);
+                                    }
+                                }}
+                                className="space-y-6"
+                            >
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="flex flex-col gap-2">
                                         <label className="text-sm font-bold text-primary uppercase tracking-wider">Name</label>
-                                        <input type="text" placeholder="Your full name" className="bg-white border-0 rounded-xl px-5 py-4 outline-none focus:ring-2 focus:ring-accent/20 transition-all font-inter shadow-sm" />
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            required
+                                            placeholder="Your Name"
+                                            className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                        />
                                     </div>
                                     <div className="flex flex-col gap-2">
                                         <label className="text-sm font-bold text-primary uppercase tracking-wider">Email</label>
-                                        <input type="email" placeholder="Email address" className="bg-white border-0 rounded-xl px-5 py-4 outline-none focus:ring-2 focus:ring-accent/20 transition-all font-inter shadow-sm" />
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            required
+                                            placeholder="Email Address"
+                                            className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                        />
                                     </div>
                                 </div>
-
                                 <div className="flex flex-col gap-2">
                                     <label className="text-sm font-bold text-primary uppercase tracking-wider">Subject</label>
-                                    <select className="bg-white border-0 rounded-xl px-5 py-4 outline-none focus:ring-2 focus:ring-accent/20 transition-all font-inter shadow-sm appearance-none cursor-pointer">
-                                        <option>General Inquiry</option>
-                                        <option>Financial Partnership</option>
-                                        <option>Program Enrollment</option>
-                                        <option>Donation Question</option>
-                                    </select>
+                                    <input
+                                        type="text"
+                                        name="subject"
+                                        placeholder="Subject"
+                                        className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                    />
                                 </div>
-
                                 <div className="flex flex-col gap-2">
                                     <label className="text-sm font-bold text-primary uppercase tracking-wider">Message</label>
-                                    <textarea rows={6} placeholder="How can we help you?" className="bg-white border-0 rounded-xl px-5 py-4 outline-none focus:ring-2 focus:ring-accent/20 transition-all font-inter shadow-sm resize-none"></textarea>
+                                    <textarea
+                                        name="message"
+                                        required
+                                        rows={6}
+                                        placeholder="Tell us about your interest..."
+                                        className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
+                                    ></textarea>
                                 </div>
-
-                                <button className="btn-primary w-full py-4 text-lg shadow-xl shadow-primary/10 flex items-center justify-center gap-3 group">
-                                    Send Message <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                <button
+                                    type="submit"
+                                    disabled={formStatus === 'loading'}
+                                    className="w-full btn-primary py-4 rounded-2xl flex items-center justify-center gap-2 group disabled:opacity-50"
+                                >
+                                    {formStatus === 'loading' ? (
+                                        "Sending..."
+                                    ) : formStatus === 'success' ? (
+                                        "Message Sent!"
+                                    ) : (
+                                        <>
+                                            Send Message
+                                            <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                        </>
+                                    )}
                                 </button>
                             </form>
                         </div>

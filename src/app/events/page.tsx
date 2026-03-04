@@ -1,10 +1,13 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Calendar, Clock, MapPin, Tag, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import EnrollmentModal from "@/components/EnrollmentModal";
 
 const events = [
     {
-        id: 1,
+        id: "eco-tech-bootcamp",
         title: "Eco-Tech Innovation Bootcamp",
         date: "March 15 - 20, 2026",
         time: "9:00 AM - 4:00 PM",
@@ -15,7 +18,7 @@ const events = [
         desc: "A 5-day intensive bootcamp focusing on building sustainable solutions using IoT and recycled materials."
     },
     {
-        id: 2,
+        id: "financial-seminar",
         title: "Youth Financial Literacy Seminar",
         date: "April 05, 2026",
         time: "10:00 AM - 2:00 PM",
@@ -26,7 +29,7 @@ const events = [
         desc: "A virtual deep-dive into wealth creation strategies for teenagers and young adults."
     },
     {
-        id: 3,
+        id: "leadership-summit",
         title: "Annual Leadership Summit",
         date: "May 12, 2026",
         time: "8:30 AM - 5:00 PM",
@@ -39,8 +42,18 @@ const events = [
 ];
 
 export default function EventsPage() {
+    const [selectedEvent, setSelectedEvent] = useState<{ id: string, title: string } | null>(null);
+
     return (
         <main className="min-h-screen pt-20">
+            <EnrollmentModal
+                isOpen={!!selectedEvent}
+                onClose={() => setSelectedEvent(null)}
+                type="EVENT"
+                targetId={selectedEvent?.id || ""}
+                targetTitle={selectedEvent?.title || ""}
+            />
+
             {/* Header */}
             <section className="section-padding bg-slate-50 border-b border-slate-100">
                 <div className="container mx-auto px-6 text-center">
@@ -88,7 +101,10 @@ export default function EventsPage() {
                                         </div>
                                     </div>
 
-                                    <button className="btn-primary w-full py-3 text-sm flex items-center justify-center gap-2">
+                                    <button
+                                        onClick={() => setSelectedEvent({ id: event.id, title: event.title })}
+                                        className="btn-primary w-full py-3 text-sm flex items-center justify-center gap-2"
+                                    >
                                         Register Now <ArrowRight className="w-4 h-4" />
                                     </button>
                                 </div>

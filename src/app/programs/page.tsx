@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Code, Microscope, TrendingUp, Users, Heart, Zap } from "lucide-react";
+import EnrollmentModal from "@/components/EnrollmentModal";
 
 const programs = [
     {
@@ -70,8 +73,18 @@ const programs = [
 ];
 
 export default function ProgramsPage() {
+    const [selectedProgram, setSelectedProgram] = useState<{ id: string, title: string } | null>(null);
+
     return (
         <main className="min-h-screen pt-20">
+            <EnrollmentModal
+                isOpen={!!selectedProgram}
+                onClose={() => setSelectedProgram(null)}
+                type="PROGRAM"
+                targetId={selectedProgram?.id || ""}
+                targetTitle={selectedProgram?.title || ""}
+            />
+
             {/* Header */}
             <section className="section-padding bg-slate-50 border-b border-slate-100">
                 <div className="container mx-auto px-6 text-center">
@@ -136,9 +149,12 @@ export default function ProgramsPage() {
                                 </div>
 
                                 <div className="flex flex-wrap gap-4">
-                                    <Link href="/join" className="btn-primary">
+                                    <button
+                                        onClick={() => setSelectedProgram({ id: program.id, title: program.title })}
+                                        className="btn-primary"
+                                    >
                                         Enroll Now
-                                    </Link>
+                                    </button>
                                     <Link href="/contact" className="btn-outline">
                                         Ask for Details
                                     </Link>
@@ -150,16 +166,20 @@ export default function ProgramsPage() {
             </section>
 
             {/* Impact Reminder */}
-            <section className="section-padding bg-growth text-white">
-                <div className="container mx-auto text-center">
-                    <Zap className="w-12 h-12 mx-auto mb-8 animate-bounce" />
-                    <h2 className="text-4xl font-outfit font-bold mb-6">Financial Habits That Last a Lifetime</h2>
-                    <p className="text-xl max-w-2xl mx-auto mb-12 opacity-90">
-                        Our programs are more than just classes; they are springboards for future wealth builders. Join us in shaping financially responsible leaders of tomorrow.
+            <section className="relative section-padding bg-growth text-white overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <div className="absolute inset-0 bg-gradient-to-b from-growth/90 to-growth"></div>
+                    <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2520&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay opacity-30"></div>
+                </div>
+                <div className="container mx-auto px-6 relative z-10 text-center">
+                    <Zap className="w-12 h-12 mx-auto mb-8 animate-bounce text-white/50" />
+                    <h2 className="text-4xl md:text-5xl font-outfit font-bold mb-6">Financial Habits That Last a Lifetime</h2>
+                    <p className="text-xl max-w-2xl mx-auto mb-12 opacity-90 font-inter font-medium italic">
+                        "Our programs are more than just classes; they are springboards for future wealth builders. Join us in shaping financially responsible leaders of tomorrow."
                     </p>
                     <div className="flex justify-center gap-4">
-                        <Link href="/impact" className="btn-primary bg-white text-growth hover:bg-slate-100 flex items-center gap-2">
-                            See Our Impact <ArrowRight className="w-5 h-5" />
+                        <Link href="/impact" className="btn-secondary bg-white text-growth hover:bg-slate-50 shadow-xl flex items-center gap-2 group">
+                            See Our Impact <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Link>
                     </div>
                 </div>

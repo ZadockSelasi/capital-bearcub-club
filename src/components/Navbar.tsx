@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, X, Heart } from "lucide-react";
 
 const navLinks = [
@@ -18,6 +19,9 @@ const navLinks = [
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const pathname = usePathname();
+
+    const isHidden = pathname.startsWith("/admin") || pathname.startsWith("/auth");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -26,6 +30,8 @@ export default function Navbar() {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    if (isHidden) return null;
 
     return (
         <nav
