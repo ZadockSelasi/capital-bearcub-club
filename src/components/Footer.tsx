@@ -97,6 +97,7 @@ export default function Footer() {
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-white/40 text-sm">
                     <p>© {new Date().getFullYear()} Capital Bearcub. All rights reserved.</p>
                     <div className="flex gap-6">
+                        <Link href="/admin" className="hover:text-white transition-colors">Admin</Link>
                         <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
                         <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
                     </div>
