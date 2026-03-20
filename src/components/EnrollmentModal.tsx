@@ -54,7 +54,7 @@ export default function EnrollmentModal({ isOpen, onClose, type, targetId, targe
 
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-primary/20 backdrop-blur-sm">
-            <div className="bg-white w-full max-w-lg rounded-[2.5rem] shadow-2xl overflow-hidden relative border border-slate-100 animate-in fade-in zoom-in duration-300">
+            <div className="bg-white w-full max-w-lg max-h-[90vh] rounded-[2.5rem] shadow-2xl overflow-y-auto relative border border-slate-100 animate-in fade-in zoom-in duration-300">
                 <button
                     onClick={onClose}
                     className="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-50 text-slate-400 transition-colors"

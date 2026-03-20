@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Heart } from "lucide-react";
+import { Menu, X, Heart, ShieldCheck } from "lucide-react";
 
 const navLinks = [
     { name: "Home", href: "/" },
@@ -41,8 +41,8 @@ export default function Navbar() {
             <div className="container mx-auto px-6 flex justify-between items-center">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2">
-                    <Image src="/logo.png" alt="Capital Bearcub Logo" width={80} height={80} className="w-14 h-14 object-contain" />
-                    <span className={`text-2xl font-outfit font-bold ${scrolled ? "text-primary" : "text-white"}`}>
+                    <Image src="/logo.png" alt="Capital Bearcub Logo" width={80} height={80} className="w-10 h-10 md:w-14 md:h-14 object-contain" />
+                    <span className={`text-xl md:text-2xl font-outfit font-bold ${scrolled ? "text-primary" : "text-white"}`}>
                         Capital<span className="text-accent">Bearcub</span>
                     </span>
                 </Link>
@@ -59,6 +59,9 @@ export default function Navbar() {
                             {link.name}
                         </Link>
                     ))}
+                    <Link href="/admin" className={`text-sm font-bold flex items-center gap-2 hover:text-accent transition-colors ${scrolled ? "text-primary" : "text-white"}`}>
+                        <ShieldCheck className="w-4 h-4" /> Admin
+                    </Link>
                     <Link href="/donate" className="btn-secondary px-6 py-2 flex items-center gap-2 text-sm shadow-none">
                         <Heart className="w-4 h-4 fill-white" /> Donate
                     </Link>
@@ -75,7 +78,7 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             <div
-                className={`lg:hidden fixed inset-0 top-0 h-screen w-full bg-white z-[60] transition-transform duration-500 transform ${isOpen ? "translate-x-0" : "translate-x-full"
+                className={`lg:hidden fixed inset-0 top-0 h-[100dvh] w-full bg-white z-[60] transition-transform duration-500 transform overflow-y-auto ${isOpen ? "translate-x-0" : "translate-x-full"
                     }`}
             >
                 <div className="flex flex-col h-full p-8">
@@ -104,8 +107,11 @@ export default function Navbar() {
                         ))}
                     </div>
 
-                    <div className="mt-auto">
-                        <Link href="/donate" className="btn-secondary w-full py-4 text-lg flex items-center justify-center gap-2" onClick={() => setIsOpen(false)}>
+                    <div className="mt-auto flex flex-col gap-3">
+                        <Link href="/admin" className="w-full py-3 text-lg font-bold text-primary flex items-center justify-center gap-2 bg-slate-50 rounded-2xl border border-slate-100" onClick={() => setIsOpen(false)}>
+                            <ShieldCheck className="w-5 h-5" /> Admin Portal
+                        </Link>
+                        <Link href="/donate" className="btn-secondary w-full py-4 text-lg flex items-center justify-center gap-2 shadow-none" onClick={() => setIsOpen(false)}>
                             <Heart className="w-5 h-5 fill-white" /> Donate Now
                         </Link>
                     </div>

@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import BlogManager from "@/components/admin/BlogManager";
 import { FileText, Edit, Trash2, Eye, Calendar, User } from "lucide-react";
+import DeleteEntityButton from "@/components/admin/DeleteEntityButton";
 
 export default async function AdminBlogPage() {
     const posts = await prisma.blogPost.findMany({
@@ -54,9 +55,13 @@ export default async function AdminBlogPage() {
                                     <button className="text-xs font-bold text-slate-400 hover:text-primary transition-colors flex items-center gap-2">
                                         <Edit className="w-4 h-4" /> Edit
                                     </button>
-                                    <button className="text-xs font-bold text-slate-400 hover:text-red-500 transition-colors flex items-center gap-2">
+                                    <DeleteEntityButton 
+                                        id={post.id} 
+                                        endpoint="/api/blog"
+                                        className="text-xs font-bold text-slate-400 hover:text-red-500 transition-colors flex items-center gap-2"
+                                    >
                                         <Trash2 className="w-4 h-4" /> Delete
-                                    </button>
+                                    </DeleteEntityButton>
                                 </div>
                                 <button className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-accent hover:text-white transition-all shadow-sm">
                                     <Eye className="w-4 h-4" />

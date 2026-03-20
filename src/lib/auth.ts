@@ -12,8 +12,8 @@ export const authOptions: any = {
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
-                if (credentials?.email === "zadockselasi7@gmail.com" && credentials?.password === "password123") {
-                    return { id: "1", name: "Admin", email: "zadockselasi7@gmail.com" };
+                if (credentials?.email === "capitalbearcub@gmail.com" && credentials?.password === "password123") {
+                    return { id: "1", name: "Admin", email: "capitalbearcub@gmail.com" };
                 }
                 return null;
             }

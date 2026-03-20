@@ -1,23 +1,38 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles, TrendingUp, Users, Heart } from "lucide-react";
+import { prisma } from "@/lib/prisma";
 
-export default function Home() {
+export default async function Home() {
+    const programs = await prisma.program.findMany({
+        where: { status: 'ACTIVE' },
+        orderBy: { createdAt: "desc" },
+        take: 3,
+    });
+
+    const getCategoryStyle = (category: string) => {
+        switch (category) {
+            case "FINANCE": return { color: "bg-growth", icon: <TrendingUp className="w-6 h-6" /> };
+            case "TECH": return { color: "bg-primary", icon: <Sparkles className="w-6 h-6" /> };
+            case "LEADERSHIP": return { color: "bg-accent", icon: <Users className="w-6 h-6" /> };
+            default: return { color: "bg-accent", icon: <Sparkles className="w-6 h-6" /> };
+        }
+    };
     return (
         <main className="min-h-screen">
             {/* Hero Section */}
-            <section className="relative h-[90vh] flex items-center justify-center overflow-hidden bg-primary text-white">
+            <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-primary text-white pt-32 pb-16">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-gradient-to-b from-primary/80 to-primary"></div>
                     {/* Placeholder for hero image */}
                     <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center mix-blend-overlay opacity-30"></div>
                 </div>
 
-                <div className="container mx-auto px-6 relative z-10 text-center">
+                <div className="container mx-auto px-6 relative z-10 text-center flex flex-col items-center justify-center min-h-full">
 
 
-                    <h1 className="text-5xl md:text-7xl font-outfit font-bold mb-6 leading-tight">
-                        Raising <span className="text-white">Financially Intelligent</span> <br />
+                    <h1 className="text-4xl sm:text-5xl md:text-7xl font-outfit font-bold mb-6 leading-tight">
+                        Raising <span className="text-white">Financially Intelligent</span> <br className="hidden md:block" />
                         & Purpose-Driven Youth
                     </h1>
 
@@ -127,47 +142,37 @@ export default function Home() {
                 </div>
 
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {[
-                        {
-                            title: "Early Savers Club",
-                            desc: "Hands-on workshops teaching the value of money, saving habits, and basic budgeting for ages 8-12.",
-                            icon: <Sparkles className="w-6 h-6" />,
-                            color: "bg-growth",
-                            img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2670&auto=format&fit=crop"
-                        },
-                        {
-                            title: "Teen Wealth Builders",
-                            desc: "Advanced financial literacy, investment basics, and entrepreneurship training to build healthy money habits early.",
-                            icon: <TrendingUp className="w-6 h-6" />,
-                            color: "bg-primary",
-                            img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2611&auto=format&fit=crop"
-                        },
-                        {
-                            title: "Young Entrepreneurs",
-                            desc: "Mentorship and business development to raise purpose-driven leaders who understand value creation.",
-                            icon: <Users className="w-6 h-6" />,
-                            color: "bg-accent",
-                            img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2532&auto=format&fit=crop"
-                        }
-                    ].map((program, i) => (
-                        <div key={i} className="group relative bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 transition-all hover:-translate-y-2 hover:shadow-2xl">
-                            <div className="h-48 overflow-hidden relative">
-                                <img src={program.img} alt={program.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                                <div className={`absolute top-4 left-4 p-3 rounded-xl text-white shadow-lg ${program.color}`}>
-                                    {program.icon}
+                    {programs.length > 0 ? programs.map((program) => {
+                        const style = getCategoryStyle(program.category);
+                        return (
+                        <div key={program.id} className="group relative bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 transition-all hover:-translate-y-2 hover:shadow-2xl flex flex-col">
+                            <div className="h-48 overflow-hidden relative shrink-0">
+                                {program.image ? (
+                                    <img src={program.image} alt={program.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                                ) : (
+                                    <div className="w-full h-full bg-slate-100 flex items-center justify-center">
+                                        <Sparkles className="w-10 h-10 text-slate-300" />
+                                    </div>
+                                )}
+                                <div className={`absolute top-4 left-4 p-3 rounded-xl text-white shadow-lg ${style.color}`}>
+                                    {style.icon}
                                 </div>
                             </div>
-                            <div className="p-8">
+                            <div className="p-8 flex flex-col flex-1">
                                 <h4 className="text-2xl font-bold text-primary mb-4">{program.title}</h4>
-                                <p className="text-slate-600 mb-6 leading-relaxed">
-                                    {program.desc}
+                                <p className="text-slate-600 mb-6 leading-relaxed line-clamp-3">
+                                    {program.description}
                                 </p>
-                                <Link href="/programs" className="text-accent font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                                <Link href="/programs" className="text-accent font-bold flex items-center gap-2 group-hover:gap-3 transition-all mt-auto">
                                     Learn More <ArrowRight className="w-4 h-4" />
                                 </Link>
                             </div>
                         </div>
-                    ))}
+                    )}) : (
+                        <div className="col-span-full py-10 text-center text-slate-500 italic">
+                            New programs will be announced soon!
+                        </div>
+                    )}
                 </div>
 
                 <div className="mt-20 text-center">

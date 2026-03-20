@@ -29,7 +29,7 @@ export default function AdminSettingsPage() {
                         </div>
                         <div className="space-y-2">
                             <label className="text-xs font-black uppercase tracking-widest text-slate-400 pl-2">Email Address</label>
-                            <input type="email" defaultValue="zadockselasi7@gmail.com" className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-primary/10 outline-none transition-all font-medium" />
+                            <input type="email" defaultValue="capitalbearcub@gmail.com" className="w-full px-6 py-4 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-primary/10 outline-none transition-all font-medium" />
                         </div>
                     </div>
                 </section>

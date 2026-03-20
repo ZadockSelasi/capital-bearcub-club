@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import EventsManager from "@/components/admin/EventsManager";
 import { Calendar, MapPin, Trash2, Edit2, Clock } from "lucide-react";
+import DeleteEntityButton from "@/components/admin/DeleteEntityButton";
 
 export default async function AdminEventsPage() {
     const events = await prisma.event.findMany({
@@ -86,9 +87,13 @@ export default async function AdminEventsPage() {
                                             <button className="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-primary/10 hover:text-primary transition-all">
                                                 <Edit2 className="w-4 h-4" />
                                             </button>
-                                            <button className="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-red-50 hover:text-red-500 transition-all">
+                                            <DeleteEntityButton 
+                                                id={event.id} 
+                                                endpoint="/api/events"
+                                                className="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-red-50 hover:text-red-500 transition-all"
+                                            >
                                                 <Trash2 className="w-4 h-4" />
-                                            </button>
+                                            </DeleteEntityButton>
                                         </div>
                                     </td>
                                 </tr>

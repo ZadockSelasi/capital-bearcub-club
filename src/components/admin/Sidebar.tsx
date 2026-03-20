@@ -13,7 +13,8 @@ import {
     ChevronRight,
     MessageSquare,
     Calendar,
-    BookOpen
+    BookOpen,
+    ExternalLink
 } from "lucide-react";
 
 const navItems = [
@@ -65,7 +66,11 @@ export default function AdminSidebar() {
                 })}
             </nav>
 
-            <div className="p-6 border-t border-white/10">
+            <div className="p-6 border-t border-white/10 space-y-2">
+                <Link href="/" className="flex items-center gap-3 w-full px-4 py-3 rounded-xl hover:bg-white/10 text-white/50 hover:text-white transition-all font-bold text-sm">
+                    <ExternalLink className="w-5 h-5" />
+                    Go to Main Site
+                </Link>
                 <button className="flex items-center gap-3 w-full px-4 py-3 rounded-xl hover:bg-red-500/10 text-white/50 hover:text-red-400 transition-all font-bold text-sm">
                     <LogOut className="w-5 h-5" />
                     Sign Out

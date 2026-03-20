@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import ProgramsManager from "@/components/admin/ProgramsManager";
 import { Settings2, Trash2, ExternalLink } from "lucide-react";
+import DeleteEntityButton from "@/components/admin/DeleteEntityButton";
 
 export default async function AdminProgramsPage() {
     const programs = await prisma.program.findMany({
@@ -37,9 +38,13 @@ export default async function AdminProgramsPage() {
                                     <button className="p-2 hover:bg-slate-50 rounded-lg text-slate-400 hover:text-primary transition-colors">
                                         <ExternalLink className="w-4 h-4" />
                                     </button>
-                                    <button className="p-2 hover:bg-red-50 rounded-lg text-slate-400 hover:text-red-500 transition-colors">
+                                    <DeleteEntityButton 
+                                        id={program.id} 
+                                        endpoint="/api/programs"
+                                        className="p-2 hover:bg-red-50 rounded-lg text-slate-400 hover:text-red-500 transition-colors"
+                                    >
                                         <Trash2 className="w-4 h-4" />
-                                    </button>
+                                    </DeleteEntityButton>
                                 </div>
                             </div>
 

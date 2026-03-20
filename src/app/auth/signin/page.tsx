@@ -64,7 +64,7 @@ export default function SignInPage() {
                                     required
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    placeholder="zadockselasi7@gmail.com"
+                                    placeholder="capitalbearcub@gmail.com"
                                     className="w-full pl-12 pr-6 py-4 rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium"
                                 />
                             </div>

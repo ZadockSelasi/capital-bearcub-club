@@ -1,58 +1,17 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import { Calendar, Clock, MapPin, Tag, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import EnrollmentModal from "@/components/EnrollmentModal";
+import EnrollmentButtonWrapper from "@/components/EnrollmentButtonWrapper";
+import { prisma } from "@/lib/prisma";
 
-const events = [
-    {
-        id: "eco-tech-bootcamp",
-        title: "Eco-Tech Innovation Bootcamp",
-        date: "March 15 - 20, 2026",
-        time: "9:00 AM - 4:00 PM",
-        location: "Capital Bearcub Hub, Accra",
-        type: "Workshop",
-        price: "Free",
-        img: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2670&auto=format&fit=crop",
-        desc: "A 5-day intensive bootcamp focusing on building sustainable solutions using IoT and recycled materials."
-    },
-    {
-        id: "financial-seminar",
-        title: "Youth Financial Literacy Seminar",
-        date: "April 05, 2026",
-        time: "10:00 AM - 2:00 PM",
-        location: "Online (Zoom)",
-        type: "Seminar",
-        price: "Free",
-        img: "https://images.unsplash.com/photo-1591115765373-5207764f72e7?q=80&w=2670&auto=format&fit=crop",
-        desc: "A virtual deep-dive into wealth creation strategies for teenagers and young adults."
-    },
-    {
-        id: "leadership-summit",
-        title: "Annual Leadership Summit",
-        date: "May 12, 2026",
-        time: "8:30 AM - 5:00 PM",
-        location: "National Theatre, Accra",
-        type: "Conference",
-        price: "Registration Required",
-        img: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=2670&auto=format&fit=crop",
-        desc: "Join global leaders and local innovators for a day of inspiration, networking, and workshop sessions."
-    }
-];
-
-export default function EventsPage() {
-    const [selectedEvent, setSelectedEvent] = useState<{ id: string, title: string } | null>(null);
+export default async function EventsPage() {
+    const events = await prisma.event.findMany({
+        where: { status: 'UPCOMING' },
+        orderBy: { date: "asc" }
+    });
 
     return (
         <main className="min-h-screen pt-20">
-            <EnrollmentModal
-                isOpen={!!selectedEvent}
-                onClose={() => setSelectedEvent(null)}
-                type="EVENT"
-                targetId={selectedEvent?.id || ""}
-                targetTitle={selectedEvent?.title || ""}
-            />
 
             {/* Header */}
             <section className="section-padding bg-slate-50 border-b border-slate-100">
@@ -68,32 +27,42 @@ export default function EventsPage() {
             <section className="section-padding bg-white">
                 <div className="container mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        {events.map((event) => (
+                        {events.length === 0 ? (
+                            <div className="col-span-full py-20 text-center text-slate-500 italic">
+                                Check back later for new events!
+                            </div>
+                        ) : events.map((event) => (
                             <div key={event.id} className="group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-lg hover:shadow-2xl transition-all flex flex-col hover:-translate-y-2">
                                 <div className="h-56 relative overflow-hidden">
-                                    <img src={event.img} alt={event.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                                    {event.image ? (
+                                        <img src={event.image} alt={event.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                                    ) : (
+                                        <div className="w-full h-full bg-slate-100 flex items-center justify-center text-slate-300">
+                                            <Calendar className="w-12 h-12" />
+                                        </div>
+                                    )}
                                     <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1 rounded-full text-primary font-bold text-xs uppercase tracking-widest shadow-sm">
-                                        {event.type}
+                                        EVENT
                                     </div>
                                     <div className="absolute bottom-4 right-4 bg-accent px-4 py-1 rounded-full text-white font-bold text-xs shadow-lg">
-                                        {event.price}
+                                        JOIN US
                                     </div>
                                 </div>
 
                                 <div className="p-8 flex flex-col flex-grow">
                                     <h3 className="text-2xl font-bold font-outfit text-primary mb-4">{event.title}</h3>
                                     <p className="text-slate-500 text-sm mb-6 flex-grow leading-relaxed">
-                                        {event.desc}
+                                        {event.description}
                                     </p>
 
                                     <div className="space-y-3 mb-8">
                                         <div className="flex items-center gap-3 text-sm text-slate-600">
                                             <Calendar className="w-4 h-4 text-accent" />
-                                            <span>{event.date}</span>
+                                            <span>{new Date(event.date).toLocaleDateString()}</span>
                                         </div>
                                         <div className="flex items-center gap-3 text-sm text-slate-600">
                                             <Clock className="w-4 h-4 text-accent" />
-                                            <span>{event.time}</span>
+                                            <span>{new Date(event.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                                         </div>
                                         <div className="flex items-center gap-3 text-sm text-slate-600 font-bold">
                                             <MapPin className="w-4 h-4 text-accent" />
@@ -101,12 +70,13 @@ export default function EventsPage() {
                                         </div>
                                     </div>
 
-                                    <button
-                                        onClick={() => setSelectedEvent({ id: event.id, title: event.title })}
+                                    <EnrollmentButtonWrapper 
+                                        type="EVENT"
+                                        targetId={event.id}
+                                        targetTitle={event.title}
                                         className="btn-primary w-full py-3 text-sm flex items-center justify-center gap-2"
-                                    >
-                                        Register Now <ArrowRight className="w-4 h-4" />
-                                    </button>
+                                        buttonText="Register Now"
+                                    />
                                 </div>
                             </div>
                         ))}
